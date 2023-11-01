@@ -1,0 +1,73 @@
+INSTALLL UBUNTU ON Virtual Box:
+
+https://ubuntu.com/download/desktop
+
+Downloaded file
+ubuntu-22.04.3-desktop-amd64.iso
+
+create virtualBox
+
+
+#######
+NEW >>
+########################################################
+name:postgres
+folder:desired folder
+iso image : dont select
+type: linux
+version: Ubuntu64
+########################################################
+SETTINGS
+########################################################
+storage>>IDE>>choose installer.
+########################################################
+
+INSALL UBUNTU
+
+ENGLISH:
+NOTMAL INSTALLATION:
+next..next..next....
+sudo apt update
+sudo apt install net-tools
+ifconfig
+
+########################################################
+CONNECT USING PUTTY
+https://www.makeuseof.com/fix-ssh-connection-refused-error-linux/#:~:text=1.,able%20to%20access%20it%20remotely.
+
+dpkg --list | grep ssh
+
+sudo apt install openssh-server -y
+
+sudo systemctl status sshd
+
+sudo systemctl enable ssh
+
+sudo netstat -plntu | grep ssh
+
+sudo ufw allow ssh
+
+
+
+
+########################################################
+INSTALL POSTGRES ON UBUNTU
+########################################################
+https://www.postgresql.org/download/linux/ubuntu/
+
+
+sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+sudo apt-get -y install postgresql
+########################################################
+
+##########################
+Validate the installation:
+##########################
+ps -ef|grep postgres
+
+cat /etc/passwd -- we have postgres
+AUTO START ENABLE
+systemctl stop postgresql.service
+
