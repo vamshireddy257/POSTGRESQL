@@ -46,28 +46,3 @@ sudo systemctl enable ssh
 sudo netstat -plntu | grep ssh
 
 sudo ufw allow ssh
-
-
-
-
-########################################################
-INSTALL POSTGRES ON UBUNTU
-########################################################
-https://www.postgresql.org/download/linux/ubuntu/
-
-
-sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-sudo apt-get update
-sudo apt-get -y install postgresql
-########################################################
-
-##########################
-Validate the installation:
-##########################
-ps -ef|grep postgres
-
-cat /etc/passwd -- we have postgres
-AUTO START ENABLE
-systemctl stop postgresql.service
-
