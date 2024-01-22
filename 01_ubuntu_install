@@ -1,0 +1,74 @@
+Install Virtual Box
+
+Create virtualbox
+NAME: pgsrv1.com
+Folder : target folder.
+ISO 	: ubuntu-22.04.3-desktop-amd64.iso:
+
+Click on Skip unattended installation
+
+
+UBUNTU
+
+ubuntu-22.04.3-desktop-amd64.iso:
+
+TRY Or Install Ubuntu.
+
+ENGLISH : Install Ubuntu
+ENGLISH : continue
+
+Normal Installation.
+Download Updates.
+
+Something Else:
+new partition table:
+Continue:
+
+Double clik on freespace
+/ 47G
+swap 8192
+/u01 20000
+/biosboot 2048
+/boot 2048
+/backup 10000
+/tmp 20000
+
+Install now 
+continue .... 
+timezone...
+
+Who are you?
+
+vamshi
+hostname : pgsrv1.com
+Continue...
+
+Restart:
+
+Try connecting through putty.
+Get IP by 
+ip a
+or 
+ip addr
+
+you will not be able to connect.
+
+SO do 
+apt update
+apt upgrade
+apt install openssh-server
+service ssh status
+also install vim as vi doesnt work as expected
+apt install vim -y
+
+Now connection should establish from putty.
+Note: You can directly connect to root.
+
+so 
+vim /etc/ssh/sshd_config
+FROM:
+#PermitRootLogin prohibit-password
+TO:
+PermitRootLogin yes
+sudo systemctl restart ssh
+now you can login directly with root user.
