@@ -1,0 +1,65 @@
+# Create the file repository configuration:
+sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+# Import the repository signing key:
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
+# Update the package lists:
+sudo apt-get update
+
+# Install the latest version of PostgreSQL.
+# If you want a specific version, use 'postgresql-12' or similar instead of 'postgresql':
+sudo apt-get -y install postgresql
+
+
+###check the connectivity to database###
+
+sudo -i -u postgres
+psql
+\q
+\conninfo
+
+
+#change the name of cluster
+select current_setting('cluster_name') , current_setting('server_version') ;
+
+\d pg_settings
+select name,setting,pending_restart from pg_settings where name in ( 'cluster_name','server_version','port');
+
+alter system set cluster_name='vamshi';
+\d pg_settings
+select name,setting,pending_restart from pg_settings where name in ( 'cluster_name','server_version','port');
+
+
+select current_setting('cluster_name') , current_setting('server_version') ;
+
+show data_directory;
+\q
+
+
+cd /usr/lib/postgresql/16/bin/ 
+./pg_ctl restart -D /var/lib/postgresql/16/main
+
+ps -ef|grep postgres
+
+
+#Create new cluster:
+root# mkdir /u01/postgres/databases/aditi
+root# chown postgres:postgres /u01/postgres/databases/aditi
+   
+sudo -i -u psotgres
+/usr/lib/postgresql/16/bin/initdb -D /u01/postgres/databases/aditi/
+/usr/lib/postgresql/16/bin/pg_ctl start -D /u01/postgres/databases/aditi/
+
+to start  it we need to modify port parameter and 
+also we can change name for cluster from a file 
+called postgresql.conf which resides in data directory.(/u01/postgres/databases/aditi/)
+port = 5433
+cluster_name = 'aditi' 
+
+to connect to newly create aditi database
+export PGPORT=5433
+export PGDATA=/u01/postgres/databases/aditi
+psql
+\conninfo
+select current_setting('cluster_name') , current_setting('server_version') ;
