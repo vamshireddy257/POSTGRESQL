@@ -1,0 +1,42 @@
+# Install the repository RPM:
+sudo yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+
+# Install PostgreSQL:
+sudo yum install -y postgresql15-server
+
+# Optionally initialize the database and enable automatic start:
+sudo /usr/pgsql-15/bin/postgresql-15-setup initdb
+sudo systemctl enable postgresql-15
+sudo systemctl start postgresql-15
+
+ps -ef|grep postgresql
+
+
+#change the name of cluster
+alter system set cluster_name='vamshi';
+\d pg_settings
+select name,setting,pending_restart from pg_settings where name in ( 'cluster_name','server_version','port');
+
+select current_setting('cluster_name') , current_setting('server_version') ;
+pg_ctl restart -D /var/lib/pgsql/15/data/
+
+ps -ef|grep postgresql
+
+
+#Create new cluster:
+root# mkdir /u01/postgres/databases/aditi
+root# chown postgres:postgres /u01/postgres/databases/aditi
+   
+sudo -i -u psotgres
+/usr/pgsql-15/bin/initdb -D /u01/postgres/databases/aditi/
+/usr/pgsql-15/bin/pg_ctl start -D /u01/postgres/databases/aditi/
+
+to connect to it we need to modify port parameter and 
+also we can change name for cluster from a file 
+called postgres.conf which resides in data directory.
+(/u01/postgres/databases/aditi/)
+
+export PGPORT=5433
+export PGDATA=/u01/postgres/databases/aditi
+psql
+\conninfo
