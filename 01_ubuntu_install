@@ -51,7 +51,7 @@ ip a
 or 
 ip addr
 
-you will not be able to connect.
+you will not be able to connect through ssh(putty,mobaxterm etc....)
 
 SO do 
 apt update
