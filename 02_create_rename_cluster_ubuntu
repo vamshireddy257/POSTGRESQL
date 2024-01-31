@@ -27,6 +27,11 @@ select current_setting('cluster_name') , current_setting('server_version') ;
 select name,setting,pending_restart from pg_settings where name in ( 'cluster_name','server_version','port');
 
 alter system set cluster_name='vamshi';
+\q
+
+/var/lib/postgresql/16/main
+
+psql
 \d pg_settings
 select name,setting,pending_restart from pg_settings where name in ( 'cluster_name','server_version','port');
 
