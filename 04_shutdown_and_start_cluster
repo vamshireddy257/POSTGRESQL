@@ -1,0 +1,22 @@
+Start and shut down of cluster.
+
+SELECT current_setting('data_directory') AS pgdata_path;
+
+cd /var/lib/postgresql/16/main
+
+/usr/lib/postgresql/16/bin/pg_ctl start -D /u01/postgres/databases/aditi/
+
+/usr/lib/postgresql/16/bin/pg_ctl stop -D /u01/postgres/databases/aditi/ -ms
+
+/usr/lib/postgresql/16/bin/pg_ctl start -D /u01/postgres/databases/aditi/
+
+/usr/lib/postgresql/16/bin/pg_ctl stop -D /u01/postgres/databases/aditi/ -mf
+
+/usr/lib/postgresql/16/bin/pg_ctl start -D /u01/postgres/databases/aditi/
+
+/usr/lib/postgresql/16/bin/pg_ctl stop -D /u01/postgres/databases/aditi/ -mi
+
+/usr/lib/postgresql/16/bin/pg_ctl reload -D /u01/postgres/databases/aditi/ -mi
+
+/usr/lib/postgresql/16/bin/pg_ctl restart -D /u01/postgres/databases/aditi/ -mi
+
