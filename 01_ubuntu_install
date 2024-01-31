@@ -45,6 +45,9 @@ Continue...
 
 Restart:
 
+install guest additions...
+Restart:
+
 Try connecting through putty.
 Get IP by 
 ip a
@@ -54,15 +57,17 @@ ip addr
 you will not be able to connect through ssh(putty,mobaxterm etc....)
 
 SO do 
-apt update
-apt upgrade
-apt install openssh-server
-service ssh status
-also install vim as vi doesnt work as expected
+sudo su - 
+
+apt update -y
+apt upgrade -y 
+apt install openssh-server -y 
+service ssh status 
+#also install vim as vi doesnt work as expected
 apt install vim -y
 
 Now connection should establish from putty.
-Note: You can directly connect to root.
+Note: You can't directly connect to root.
 
 so 
 vim /etc/ssh/sshd_config
@@ -71,4 +76,11 @@ FROM:
 TO:
 PermitRootLogin yes
 sudo systemctl restart ssh
+
+sudo su - (login to root)
+change password 
+passwd 
+
 now you can login directly with root user.
+
+
