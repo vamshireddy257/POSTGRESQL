@@ -1,0 +1,19 @@
+#CHECK DATABASE LOGS LOCATION:
+
+# All parameters are in parameter file 
+postgresql.conf
+postgresql.auto.conf
+
+psql
+--check configuration file location.
+show config_file
+log_destination = 'stderr'       
+logging_collector = on
+log_directory = 'log'
+log_filename = 'postgresql-%Y-%m-%d_%H%M%S.log'
+log_rotation_age = 1d 
+
+
+## here log means log directory inside DATA directory.
+you can even mention something like '/u01/log' .
+so that the logs wil be create in /u01/log directory
