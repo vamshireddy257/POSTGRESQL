@@ -7,6 +7,9 @@ ISO 	: ubuntu-22.04.3-desktop-amd64.iso:
 
 Click on Skip unattended installation
 
+Set bidirectional and bridged adaptor.
+
+start VM
 
 UBUNTU
 
@@ -46,6 +49,7 @@ Continue...
 Restart:
 
 install guest additions...
+open folder and right click on auto_run.sh and select "Run as program"
 Restart:
 
 Try connecting through putty.
@@ -82,5 +86,3 @@ change password
 passwd 
 
 now you can login directly with root user.
-
-
