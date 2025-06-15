@@ -1,3 +1,4 @@
+
 # Create the file repository configuration:
 sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 
@@ -44,22 +45,24 @@ show data_directory;
 
 
 cd /usr/lib/postgresql/16/bin/ 
-./pg_ctl restart -D /var/lib/postgresql/16/main
+./pg_ctl restart -D /var/lib/postgresql/15/main
 
 ps -ef|grep postgres
 
 
 #Create new cluster:
-root# mkdir /u01/postgres/databases/aditi
+root# mkdir -p /u01/postgres/databases/aditi
 root# chown postgres:postgres /u01/postgres/databases/aditi
    
 sudo -i -u psotgres
 /usr/lib/postgresql/16/bin/initdb -D /u01/postgres/databases/aditi/
 /usr/lib/postgresql/16/bin/pg_ctl start -D /u01/postgres/databases/aditi/
 
-to start  it we need to modify port parameter and 
+to start  the cluster .
+ we need to modify port parameter and 
 also we can change name for cluster from a file 
-called postgresql.conf which resides in data directory.(/u01/postgres/databases/aditi/)
+called postgresql.conf which resides in data directory.
+(/u01/postgres/databases/aditi/)
 port = 5433
 cluster_name = 'aditi' 
 
